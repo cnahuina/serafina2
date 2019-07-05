@@ -13,7 +13,23 @@ switch ($op){
         $destino="../Insumo/ListarInsumo.php";
         break;
     }
+    case 2:{
+        unset($_SESSION['mensaje']);
+        $objInsumo = new insumoBean();
+        $nombre = $_REQUEST['nombre'];
+        $descripcion = $_REQUEST['descripcion'];
+        $cantidad = $_REQUEST['cantidad'];
+        $presentacion = $_REQUEST['presentacion'];
+        $estado = $_REQUEST['estado'];
+        
+        $objInsumo.setNombre($nombre);
+        $objInsumo.setDescripcion($descripcion);
+        $objInsumo.setCantidad($cantidad);
+        $objInsumo.setPresentacion($presentacion);
+        $objInsumo.setEstado($estado);
+    }
 
 }
+
 header("location:$destino");
 ?>

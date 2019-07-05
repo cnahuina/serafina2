@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $lista = $_SESSION['lista'];
+   // $_SESSION['lista'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,17 +17,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
 </head>
 <body>
 <header>
     <nav class="navbar bg-red">
         <div class="items">
             <div class="title">
-                <a class="title" href="inicio.php">Serafina</a>
+                <a class="title" href="http://localhost/SerfinaProject/Pages/inicio.php">Serafina</a>
             </div>
             <div class="icons">
                 <div class="cart-circle"><a href="../cart.php"><i class="fas fa-shopping-cart"></i></a></div>
-                <div class="profile"><a href="#"><i class="fas fa-user"></i></a></div>
+                <div class="profile"><a href="../../Pages/Admin/ListarUsuario.php"><i class="fas fa-user"></i></a></div>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,7 +50,7 @@
             <ul>
                 <li><a href="listar.php">Mis Productos</a></li>
                 <li><a href="#">Pedidos Realizados</a></li>
-                <li><a href="#">Reportes</a></li>
+                <li><a href="../inicio.php">Reportes</a></li>
                 <li><a href="#">Recetas</a></li>
             </ul>
         </div>
@@ -63,15 +66,40 @@
 
         <div class="cuerpo">
             <?php
-            foreach ($lista as $reg) {
+            //if(isset($_SESSION['lista'])){
+            //foreach ($_SESSION['lista'] as $reg) {
             ?>
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#myModal">
-                    <img src="../../assets/images/<?php echo $reg['foto']?>"  width="200" height="200" alt="">
-                    <h2><?php echo $reg['descripcion']; ?></h2>
+                    <img src="../../assets/images/prod1.jpg"  width="200" height="200" alt="">
                 <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
             </div>
-            <?php } ?>
+            <div class="card">
+                <a href="#" data-toggle="modal" data-target="#myModal">
+                    <img src="../../assets/images/prod2.jpg"  width="200" height="200" alt="">
+                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
+            </div>
+            <div class="card">
+                <a href="#" data-toggle="modal" data-target="#myModal">
+                    <img src="../../assets/images/prod3.jpg"  width="200" height="200" alt="">
+                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
+            </div>
+            <div class="card">
+                <a href="#" data-toggle="modal" data-target="#myModal">
+                    <img src="../../assets/images/prod4.jpg"  width="200" height="200" alt="">
+                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
+            </div>
+            <div class="card">
+                <a href="#" data-toggle="modal" data-target="#myModal">
+                    <img src="../../assets/images/prod5.jpg"  width="200" height="200" alt="">
+                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
+            </div>
+            <div class="card">
+                <a href="#" data-toggle="modal" data-target="#myModal">
+                    <img src="../../assets/images/prod6.jpg"  width="200" height="200" alt="">
+                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
+            </div>
+            <?php // } }?>
         </div>
 
 

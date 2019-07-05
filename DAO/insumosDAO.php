@@ -18,9 +18,9 @@ class insumosDAO
             $stock_min = $objbean->getStockMin();
             $stock_max = $objbean->getStockMax();
 
-            $sql = "insert into insumo(idInsumo, descripcion, costo, stock_min, stock_max) values ('$idInsumo','$descripcion','$costo','$stock_min','$stock_max')";
-            $objc = new ConexionBD();
-            $cn = $objc->getConexionBD();
+            $sql = "insert into insumo(idInsumo, descripcion, costo, stock_min, stock_max)
+             values ('$idInsumo','$descripcion','$costo','$stock_min','$stock_max')";
+            $cn = ConexionBD::getInstance();
             $i = mysqli_query($cn, $sql);
             mysqli_close($cn);
         } catch (Exception $exc) {
@@ -31,8 +31,7 @@ class insumosDAO
     public function ListarInsumo(){
         try {
             $sql="select * from insumo;";
-            $objc=new ConexionBD();
-            $cn=$objc->getConexionBD();
+            $cn=ConexionBD::getInstance();
             $rs= mysqli_query($cn, $sql);
             $lista=array();
             while ($fila= mysqli_fetch_assoc($rs)){

@@ -113,6 +113,43 @@ nav .navbar, .title:hover{
             flex-direction: row;
             flex-wrap: wrap;
         }
+        .info{
+            margin: 20px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+            .info h2{
+                color: #aa0200;
+                font-size: 25px;
+                font-weight: 600;
+                padding-bottom: 15px;
+            }
+                .frm_info{
+                    display: flex;
+                    background-color: #ffffff;
+                    width: 100%;
+                }
+                    .form-group-info{
+                        width: 50%;
+                        flex-direction: row;
+                        margin: 4%!important;
+
+                    }
+                    .btn-actualizar-datos{
+                        width: 200px;
+                        text-align: center;
+                        background-color: #ac362d;
+                        color: #fff;
+                        border-radius: 5px;
+                        padding: 2%;
+                    }
+                table{
+                    font-weight: 400;
+                    background: #ffffff;
+                    text-align: center;
+                    border: 1px solid #ccc;
+                }
         .card{
             margin: 1% 2.1% 40px 0%;
             justify-content: center;
@@ -291,4 +328,15 @@ nav .navbar, .title:hover{
         color: #fff;
         border-radius: 17px;
         padding: 2%;
+    }
+
+.btn-seguir-vendiendo:hover{
+    color:#fff
+}
+
+    .form-group{
+        width: 100%;
+        flex-direction: row;
+        margin: 4%!important;
+
     }

@@ -4,7 +4,7 @@
 class insumoBean
 {
     public $idInsumo;
-    public $descipcion;
+    public $descripcion;
     public $costo;
     public $stock_min;
     public $stock_max;
@@ -28,17 +28,17 @@ class insumoBean
     /**
      * @return mixed
      */
-    public function getDescipcion()
+    public function getDescripcion()
     {
-        return $this->descipcion;
+        return $this->descripcion;
     }
 
     /**
      * @param mixed $descipcion
      */
-    public function setDescipcion($descipcion)
+    public function setDescripcion($descripcion)
     {
-        $this->descipcion = $descipcion;
+        $this->descripcion = $descripcion;
     }
 
     /**

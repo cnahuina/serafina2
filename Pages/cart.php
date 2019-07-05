@@ -6,7 +6,7 @@
             <ul>
                 <li><a href="Productos/listar.php">Mis Productos</a></li>
                 <li><a href="#">Pedidos Realizados</a></li>
-                <li><a href="#">Reportes</a></li>
+                <li><a href="index.php">Reportes</a></li>
                 <li><a href="#">Recetas</a></li>
             </ul>
         </div>
@@ -62,7 +62,7 @@
                 </table>
             </div>
             <div class="botones">
-                <input type="submit" class="btn-seguir-vendiendo" value="Seguir vendiendo">
+                <a class="btn-seguir-vendiendo" href="./Productos/listar.php">Seguir vendiendo</a>
                 <input type="submit" class="btn-pagar" value="Ir a pagar">
             </div>
         </div>
