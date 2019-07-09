@@ -10,7 +10,7 @@ switch ($op){
         $objdao=new productoDAO();
         $lista=$objdao->ListarProducto();
         $_SESSION['lista']=$lista;
-        $destino="../Pages/Productos/listar.php";
+        $destino="../Pages/inicio.php";
         break;
     }
 
