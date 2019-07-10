@@ -54,11 +54,10 @@ class AdminDAO{
         $i=0;
         try {
             $id=$objbean->getCodigo();
-            $CodPersona=$objbean->getCodPersona();
             $usuario=$objbean->getUsuario();
             $clave=$objbean->getClave();
             $cod_cargo=$objbean->getCodCargo();
-            $sql="insert into usuario(codigo, usuario, clave,cod_persona,cod_cargo) values('$id','$CodPersona','$usuario','$clave',$cod_cargo)";
+            $sql="insert into usuario(usuario, clave,estado) values('$usuario','$clave','1')";
             $cn = ConexionBD::getInstance();
             $mysqli = $cn->getConnection();
             $rs = $mysqli->query($sql);

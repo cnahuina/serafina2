@@ -14,6 +14,11 @@ function Ajax(tipoparametro,ruta,servlet,op,parametros,div){
         });
 }
 
+function Record(ruta, tabla, op, parametros)
+{
+    Ajax("POST",ruta,tabla,op,parametros,"#contenido1");
+}
+
 
 function Acceso(ruta){
     var RutaTotal,usuario,clave;
@@ -31,5 +36,26 @@ function Acceso(ruta){
         document.form.action=RutaTotal;
         document.form.method="POST";
         document.form.submit();
+    }
+}
+function register_user(ruta) {
+    RutaTotal="../../Controlador/AdminControl.php?op=9";
+    var usuario, clave;
+    usuario = document.form.usuario.value;
+    clave =  document.form.clave.value;
+
+    if(usuario == ''){
+        //alertify.warning("Ingresar Nombre");
+        document.form.usuario.focus();
+        return;
+    }else if(clave == ''){
+        //alertify.warning("Ingresar Contraseña");
+        document.form.clave.focus();
+        return;
+    }else{
+        document.form.action=RutaTotal;
+        document.form.method="POST";
+        document.form.submit();
+        //Record(route,'AdminControl',1,parameter);
     }
 }

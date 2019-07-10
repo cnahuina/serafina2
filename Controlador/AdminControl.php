@@ -157,6 +157,21 @@
 
                 break;
             }
+        case 9: {
+                unset($_SESSION['mensaje']);
+                $usuario = $_REQUEST["usuario"];
+                $clave = $_REQUEST["clave"];
+                $objbean = new AdminBean();
+                $objdao = new AdminDAO();
+
+                $objbean->setUsuario($usuario);
+                $objbean->setClave($clave);
+                $i = $objdao->GrabarAdmin($objbean);
+                //$_SESSION['id'] = $id;
+                $destino = "../Pages/inicio.php";
+
+                break;
+            }
     }
     header("location:$destino");
     ?>
