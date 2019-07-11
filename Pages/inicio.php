@@ -68,15 +68,17 @@ $list = $_SESSION['lista'];
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Producto</th>
+                            <th scope="col">Presentación</th>
                             <th scope="col">Precio</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($list as $reg) {?>
                         <tr>
-                            <th scope="row"><?php echo  $reg['descripcion']; ?></th>
+                            <th scope="row"><?php echo  $reg['id_producto']; ?></th>
                             <td><?php echo  $reg['descripcion']; ?></td>
-                            <td><?php echo  $reg['descripcion']; ?></td>
+                            <td><?php echo  $reg['presentacion']; ?></td>
+                            <td><?php echo  $reg['precio']; ?></td>
                         </tr>
                     <?php }?>
                     </tbody>

@@ -30,7 +30,7 @@ class productoDAO
         return $rs;
     }
 
-    public function ListarProducto(){
+    public function  ListarProducto(){
         try {
             $sql="select * from productos";
 

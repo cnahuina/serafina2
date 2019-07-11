@@ -33,7 +33,7 @@
                             <label for="formGroupExampleInput2">Repetir Clave</label>
                             <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Repetir clave">
                         </div>
-                        <input  class="btn btn-default" type="submit"  onclick="register_user('../Controller')" value="registrar">
+                        <input  class="btn-seguir-vendiendo" type="submit"  onclick="register_user('../Controller')" value="registrar">
                     </form>
 
                 </aside>

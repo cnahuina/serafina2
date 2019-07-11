@@ -1,6 +1,7 @@
 <?php
     session_start();
-   // $_SESSION['lista'];
+    $id = $_SESSION['id'];
+    $list = $_SESSION['lista'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -65,41 +66,13 @@
 
 
         <div class="cuerpo">
-            <?php
-            //if(isset($_SESSION['lista'])){
-            //foreach ($_SESSION['lista'] as $reg) {
-            ?>
+            <?php foreach ($list as $reg) {?>
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#myModal">
-                    <img src="../../assets/images/prod1.jpg"  width="200" height="200" alt="">
+                    <img src="../../assets/images/<?php echo $reg['foto']?>"  width="200" height="200" alt="">
                 <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
             </div>
-            <div class="card">
-                <a href="#" data-toggle="modal" data-target="#myModal">
-                    <img src="../../assets/images/prod2.jpg"  width="200" height="200" alt="">
-                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
-            </div>
-            <div class="card">
-                <a href="#" data-toggle="modal" data-target="#myModal">
-                    <img src="../../assets/images/prod3.jpg"  width="200" height="200" alt="">
-                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
-            </div>
-            <div class="card">
-                <a href="#" data-toggle="modal" data-target="#myModal">
-                    <img src="../../assets/images/prod4.jpg"  width="200" height="200" alt="">
-                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
-            </div>
-            <div class="card">
-                <a href="#" data-toggle="modal" data-target="#myModal">
-                    <img src="../../assets/images/prod5.jpg"  width="200" height="200" alt="">
-                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
-            </div>
-            <div class="card">
-                <a href="#" data-toggle="modal" data-target="#myModal">
-                    <img src="../../assets/images/prod6.jpg"  width="200" height="200" alt="">
-                    <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
-            </div>
-            <?php // } }?>
+            <?php  }?>
         </div>
 
 
