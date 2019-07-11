@@ -12,6 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Heladerias Serafina</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../js/ajax.js"></script>
+
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -27,7 +29,7 @@
     <nav class="navbar bg-red">
         <div class="items">
             <div class="title">
-                <a class="title" href="http://localhost/SerfinaProject/Pages/inicio.php">Serafina</a>
+                <a class="title" href="../../Pages/inicio.php">Serafina</a>
             </div>
             <div class="icons">
                 <div class="cart-circle"><a href="../cart.php"><i class="fas fa-shopping-cart"></i></a></div>
@@ -62,15 +64,20 @@
         <div class="buscador">
             <input class="search" type="text" placeholder="Buscar producto">
             <input type="submit" value="Buscar">
+
         </div>
 
-
+        <div class="botones" style="margin: 20px;">
+            <a class="btn-agregar-nuevo" style="color:#fff" data-toggle="modal" data-target="#formNuevoProd">Nuevo Producto</a>
+        </div>
+        <?php include_once('AgregarNuevoProd.php')?>
         <div class="cuerpo">
             <?php foreach ($list as $reg) {?>
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#myModal">
                     <img src="../../assets/images/<?php echo $reg['foto']?>"  width="200" height="200" alt="">
                 <div class="circle"><i class="fas fa-shopping-cart"></i></div></a>
+                <h3 class="descripcion"><?php echo $reg['descripcion']?></h3>
             </div>
             <?php  }?>
         </div>

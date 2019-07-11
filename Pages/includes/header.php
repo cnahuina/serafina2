@@ -30,7 +30,7 @@ $id = $_SESSION['id'];
     <nav class="navbar bg-red">
         <div class="items">
             <div class="title">
-                <a class="title" href="http://localhost/SerfinaProject/Pages/inicio.php">Serafina</a>
+                <a class="title" href="../Pages/inicio.php">Serafina</a>
             </div>
             <div class="icons">
                 <div class="cart-circle"><a href="cart.php"><i class="fas fa-shopping-cart"></i></a></div>

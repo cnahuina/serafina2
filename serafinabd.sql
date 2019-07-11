@@ -1,213 +1,457 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 11-07-2019 a las 14:25:46
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-CREATE TABLE CLIENTE(
-    id_cliente          INT             AUTO_INCREMENT,
-    nombre_cliente      VARCHAR(250),
-    apellido_cliente    VARCHAR(150),
-    direccion           VARCHAR(150),
-    estado              INT             NOT NULL,
-    PRIMARY KEY (id_cliente)
-)ENGINE=INNODB
-;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Base de datos: `serafinabd`
+--
 
+-- --------------------------------------------------------
 
-CREATE TABLE COMPRAS(
-    id_compras            INT               AUTO_INCREMENT,
-    fecha_compra          DATETIME,
-    total                 DECIMAL(10, 0),
-    id_detalle_compras    INT               NOT NULL,
-    idProveedor           INT               NOT NULL,
-    PRIMARY KEY (id_compras)
-)ENGINE=INNODB
-;
+--
+-- Estructura de tabla para la tabla `cliente`
+--
 
+CREATE TABLE `cliente` (
+  `id_cliente` int(11) NOT NULL,
+  `nombre_cliente` varchar(250) DEFAULT NULL,
+  `apellido_cliente` varchar(150) DEFAULT NULL,
+  `direccion` varchar(150) DEFAULT NULL,
+  `estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
-CREATE TABLE COMPROBANTE_DE_PAGO(
-    id_comprobante         INT    AUTO_INCREMENT,
-    correlativo            INT,
-    serie                  INT,
-    id_tipo_comprobante    INT    NOT NULL,
-    PRIMARY KEY (id_comprobante)
-)ENGINE=INNODB
-;
+--
+-- Estructura de tabla para la tabla `compras`
+--
 
+CREATE TABLE `compras` (
+  `id_compras` int(11) NOT NULL,
+  `fecha_compra` datetime DEFAULT NULL,
+  `total` decimal(10,0) DEFAULT NULL,
+  `id_detalle_compras` int(11) NOT NULL,
+  `idProveedor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE DETALLE_COMPRAS(
-    id_detalle_compras    INT               AUTO_INCREMENT,
-    cantidad              INT,
-    subtotal              DECIMAL(10, 0),
-    id_insumo             INT               NOT NULL,
-    PRIMARY KEY (id_detalle_compras)
-)ENGINE=INNODB
-;
+-- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `comprobante_de_pago`
+--
 
-CREATE TABLE DETALLE_VENTAS(
-    id_detalle_venta    INT               AUTO_INCREMENT,
-    cantidad            INT,
-    subtotal            DECIMAL(10, 0),
-    id_producto         INT               NOT NULL,
-    PRIMARY KEY (id_detalle_venta)
-)ENGINE=INNODB
-;
+CREATE TABLE `comprobante_de_pago` (
+  `id_comprobante` int(11) NOT NULL,
+  `correlativo` int(11) DEFAULT NULL,
+  `serie` int(11) DEFAULT NULL,
+  `id_tipo_comprobante` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
-CREATE TABLE EMPLEADOS(
-    id_empleado          INT             AUTO_INCREMENT,
-    nombre_empleado      VARCHAR(150),
-    apellido_empleado    VARCHAR(150),
-    estado               INT,
-    id_usuario           INT             NOT NULL,
-    PRIMARY KEY (id_empleado)
-)ENGINE=INNODB
-;
+--
+-- Estructura de tabla para la tabla `detalle_compras`
+--
 
+CREATE TABLE `detalle_compras` (
+  `id_detalle_compras` int(11) NOT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `subtotal` decimal(10,0) DEFAULT NULL,
+  `id_insumo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE INSUMOS(
-    id_insumo       INT             AUTO_INCREMENT,
-    descripcion     VARCHAR(150),
-    cantidad        INT,
-    presentacion    VARCHAR(150),
-    estado          INT,
-    PRIMARY KEY (id_insumo)
-)ENGINE=INNODB
-;
+-- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `detalle_ventas`
+--
 
-CREATE TABLE PRODUCTOS(
-    id_producto     INT             AUTO_INCREMENT,
-    descripcion     VARCHAR(250)    NOT NULL,
-    presentacion    VARCHAR(10),
-    foto            TEXT,
-    estado          INT,
-    id_receta       INT,
-    PRIMARY KEY (id_producto)
-)ENGINE=INNODB
-;
-insert into INSUMOS (descripcion,cantidad,presentacion,estado)values('Vainilla',2,'porciones',1);
-insert into RECETA(descripcion,estado,id_insumo)values('PREPARACION HELADO VAINILLA',1,1);
-insert into PRODUCTOS(descripcion,presentacion,foto,estado,id_receta)values('Helado de vainilla','Vasito','prod1.jpg','1','1');
+CREATE TABLE `detalle_ventas` (
+  `id_detalle_venta` int(11) NOT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `subtotal` decimal(10,0) DEFAULT NULL,
+  `id_producto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
-CREATE TABLE PROVEEDORES(
-    idProveedor    INT            AUTO_INCREMENT,
-    razonSocial    VARCHAR(50)     NOT NULL,
-    ruc            CHAR(12),
-    direccion      VARCHAR(100),
-    PRIMARY KEY (idProveedor)
-)ENGINE=INNODB
-;
+--
+-- Estructura de tabla para la tabla `empleados`
+--
 
+CREATE TABLE `empleados` (
+  `id_empleado` int(11) NOT NULL,
+  `nombre_empleado` varchar(150) DEFAULT NULL,
+  `apellido_empleado` varchar(150) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
-CREATE TABLE RECETA(
-    id_receta      INT             AUTO_INCREMENT,
-    descripcion    VARCHAR(150)    NOT NULL,
-    estado         INT             NOT NULL,
-    id_insumo      INT             NOT NULL,
-    PRIMARY KEY (id_receta)
-)ENGINE=INNODB
-;
+--
+-- Estructura de tabla para la tabla `insumos`
+--
 
+CREATE TABLE `insumos` (
+  `id_insumo` int(11) NOT NULL,
+  `descripcion` varchar(150) DEFAULT NULL,
+  `cantidad` float DEFAULT NULL,
+  `presentacion` varchar(150) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
-CREATE TABLE TIPO_COMPROBANTE(
-    id_tipo_comprobante    INT             AUTO_INCREMENT,
-    descripcion            VARCHAR(150),
-    PRIMARY KEY (id_tipo_comprobante)
-)ENGINE=INNODB
-;
+--
+-- Estructura de tabla para la tabla `productos`
+--
 
+CREATE TABLE `productos` (
+  `id_producto` int(11) NOT NULL,
+  `descripcion` varchar(250) NOT NULL,
+  `presentacion` varchar(10) DEFAULT NULL,
+  `foto` text,
+  `estado` int(11) DEFAULT NULL,
+  `precio` varchar(155) NOT NULL,
+  `id_receta` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE USUARIO(
-    id_usuario    INT             AUTO_INCREMENT,
-    usuario       VARCHAR(100),
-    clave         VARCHAR(20),
-    estado        INT,
-    PRIMARY KEY (id_usuario)
-)ENGINE=INNODB
-;
+--
+-- Volcado de datos para la tabla `productos`
+--
 
-CREATE TABLE VENTAS(
-    id_venta            INT                AUTO_INCREMENT,
-    fecha_venta         DATETIME,
-    total               DECIMAL(10, 0),
-    id_detalle_venta    INT                NOT NULL,
-    id_cliente          INT                NOT NULL,
-    id_empleado         INT                NOT NULL,
-    id_comprobante      INT                NOT NULL,
-    PRIMARY KEY (id_venta)
-)ENGINE=INNODB
-;
+INSERT INTO `productos` (`id_producto`, `descripcion`, `presentacion`, `foto`, `estado`, `precio`, `id_receta`) VALUES
+(1, 'Helado de fresa', 'Cono', 'prod1.jpg', 1, '5', NULL),
+(2, 'Helado de Vainilla', 'Vaso', 'prod2.jpg', 1, '12', NULL);
 
+-- --------------------------------------------------------
 
-ALTER TABLE COMPRAS ADD CONSTRAINT RefDETALLE_COMPRAS131
-    FOREIGN KEY (id_detalle_compras)
-    REFERENCES DETALLE_COMPRAS(id_detalle_compras)
-;
+--
+-- Estructura de tabla para la tabla `proveedores`
+--
 
-ALTER TABLE COMPRAS ADD CONSTRAINT RefPROVEEDORES151
-    FOREIGN KEY (idProveedor)
-    REFERENCES PROVEEDORES(idProveedor)
-;
+CREATE TABLE `proveedores` (
+  `idProveedor` int(11) NOT NULL,
+  `razonSocial` varchar(50) NOT NULL,
+  `ruc` char(12) DEFAULT NULL,
+  `direccion` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
-ALTER TABLE COMPROBANTE_DE_PAGO ADD CONSTRAINT RefTIPO_COMPROBANTE161
-    FOREIGN KEY (id_tipo_comprobante)
-    REFERENCES TIPO_COMPROBANTE(id_tipo_comprobante)
-;
+--
+-- Estructura de tabla para la tabla `receta`
+--
 
+CREATE TABLE `receta` (
+  `id_receta` int(11) NOT NULL,
+  `descripcion` varchar(150) NOT NULL,
+  `estado` int(11) NOT NULL,
+  `id_insumo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
-ALTER TABLE DETALLE_COMPRAS ADD CONSTRAINT RefINSUMOS141
-    FOREIGN KEY (id_insumo)
-    REFERENCES INSUMOS(id_insumo)
-;
+--
+-- Estructura de tabla para la tabla `tipo_comprobante`
+--
 
+CREATE TABLE `tipo_comprobante` (
+  `id_tipo_comprobante` int(11) NOT NULL,
+  `descripcion` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE DETALLE_VENTAS ADD CONSTRAINT RefPRODUCTOS71
-    FOREIGN KEY (id_producto)
-    REFERENCES PRODUCTOS(id_producto)
-;
+-- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `usuario`
+--
 
-ALTER TABLE EMPLEADOS ADD CONSTRAINT RefUSUARIO101
-    FOREIGN KEY (id_usuario)
-    REFERENCES USUARIO(id_usuario)
-;
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `nombres` varchar(250) NOT NULL,
+  `usuario` varchar(100) DEFAULT NULL,
+  `clave` varchar(20) DEFAULT NULL,
+  `rep_clave` varchar(20) NOT NULL,
+  `estado` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE PRODUCTOS ADD CONSTRAINT RefRECETA51
-    FOREIGN KEY (id_receta)
-    REFERENCES RECETA(id_receta)
-;
+--
+-- Volcado de datos para la tabla `usuario`
+--
 
+INSERT INTO `usuario` (`id_usuario`, `nombres`, `usuario`, `clave`, `rep_clave`, `estado`) VALUES
+(1, 'harold', 'admin', 'admin', 'admin', 1),
+(11, 'Carlos', 'cnahuina', '11', '11', 1),
+(12, 'qwqw', 'qw', '23', '2323', 1),
+(13, 'a', 'we', '232', '213213', 1);
 
+-- --------------------------------------------------------
 
-ALTER TABLE RECETA ADD CONSTRAINT RefINSUMOS11
-    FOREIGN KEY (id_insumo)
-    REFERENCES INSUMOS(id_insumo)
-;
+--
+-- Estructura de tabla para la tabla `ventas`
+--
 
+CREATE TABLE `ventas` (
+  `id_venta` int(11) NOT NULL,
+  `fecha_venta` datetime DEFAULT NULL,
+  `total` decimal(10,0) DEFAULT NULL,
+  `id_detalle_venta` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL,
+  `id_comprobante` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Índices para tablas volcadas
+--
 
-ALTER TABLE VENTAS ADD CONSTRAINT RefDETALLE_VENTAS81
-    FOREIGN KEY (id_detalle_venta)
-    REFERENCES DETALLE_VENTAS(id_detalle_venta)
-;
+--
+-- Indices de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`id_cliente`);
 
-ALTER TABLE VENTAS ADD CONSTRAINT RefCLIENTE91
-    FOREIGN KEY (id_cliente)
-    REFERENCES CLIENTE(id_cliente)
-;
+--
+-- Indices de la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD PRIMARY KEY (`id_compras`),
+  ADD KEY `RefDETALLE_COMPRAS131` (`id_detalle_compras`),
+  ADD KEY `RefPROVEEDORES151` (`idProveedor`);
 
-ALTER TABLE VENTAS ADD CONSTRAINT RefEMPLEADOS111
-    FOREIGN KEY (id_empleado)
-    REFERENCES EMPLEADOS(id_empleado)
-;
+--
+-- Indices de la tabla `comprobante_de_pago`
+--
+ALTER TABLE `comprobante_de_pago`
+  ADD PRIMARY KEY (`id_comprobante`),
+  ADD KEY `RefTIPO_COMPROBANTE161` (`id_tipo_comprobante`);
 
-ALTER TABLE VENTAS ADD CONSTRAINT RefCOMPROBANTE_DE_PAGO171
-    FOREIGN KEY (id_comprobante)
-    REFERENCES COMPROBANTE_DE_PAGO(id_comprobante)
-;
+--
+-- Indices de la tabla `detalle_compras`
+--
+ALTER TABLE `detalle_compras`
+  ADD PRIMARY KEY (`id_detalle_compras`),
+  ADD KEY `RefINSUMOS141` (`id_insumo`);
+
+--
+-- Indices de la tabla `detalle_ventas`
+--
+ALTER TABLE `detalle_ventas`
+  ADD PRIMARY KEY (`id_detalle_venta`),
+  ADD KEY `RefPRODUCTOS71` (`id_producto`);
+
+--
+-- Indices de la tabla `empleados`
+--
+ALTER TABLE `empleados`
+  ADD PRIMARY KEY (`id_empleado`),
+  ADD KEY `RefUSUARIO101` (`id_usuario`);
+
+--
+-- Indices de la tabla `insumos`
+--
+ALTER TABLE `insumos`
+  ADD PRIMARY KEY (`id_insumo`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`id_producto`),
+  ADD KEY `RefRECETA51` (`id_receta`);
+
+--
+-- Indices de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+  ADD PRIMARY KEY (`idProveedor`);
+
+--
+-- Indices de la tabla `receta`
+--
+ALTER TABLE `receta`
+  ADD PRIMARY KEY (`id_receta`),
+  ADD KEY `RefINSUMOS11` (`id_insumo`);
+
+--
+-- Indices de la tabla `tipo_comprobante`
+--
+ALTER TABLE `tipo_comprobante`
+  ADD PRIMARY KEY (`id_tipo_comprobante`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
+-- Indices de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD PRIMARY KEY (`id_venta`),
+  ADD KEY `RefDETALLE_VENTAS81` (`id_detalle_venta`),
+  ADD KEY `RefCLIENTE91` (`id_cliente`),
+  ADD KEY `RefEMPLEADOS111` (`id_empleado`),
+  ADD KEY `RefCOMPROBANTE_DE_PAGO171` (`id_comprobante`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `compras`
+--
+ALTER TABLE `compras`
+  MODIFY `id_compras` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `comprobante_de_pago`
+--
+ALTER TABLE `comprobante_de_pago`
+  MODIFY `id_comprobante` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_compras`
+--
+ALTER TABLE `detalle_compras`
+  MODIFY `id_detalle_compras` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_ventas`
+--
+ALTER TABLE `detalle_ventas`
+  MODIFY `id_detalle_venta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `empleados`
+--
+ALTER TABLE `empleados`
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `insumos`
+--
+ALTER TABLE `insumos`
+  MODIFY `id_insumo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `receta`
+--
+ALTER TABLE `receta`
+  MODIFY `id_receta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_comprobante`
+--
+ALTER TABLE `tipo_comprobante`
+  MODIFY `id_tipo_comprobante` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD CONSTRAINT `RefDETALLE_COMPRAS131` FOREIGN KEY (`id_detalle_compras`) REFERENCES `detalle_compras` (`id_detalle_compras`),
+  ADD CONSTRAINT `RefPROVEEDORES151` FOREIGN KEY (`idProveedor`) REFERENCES `proveedores` (`idProveedor`);
+
+--
+-- Filtros para la tabla `comprobante_de_pago`
+--
+ALTER TABLE `comprobante_de_pago`
+  ADD CONSTRAINT `RefTIPO_COMPROBANTE161` FOREIGN KEY (`id_tipo_comprobante`) REFERENCES `tipo_comprobante` (`id_tipo_comprobante`);
+
+--
+-- Filtros para la tabla `detalle_compras`
+--
+ALTER TABLE `detalle_compras`
+  ADD CONSTRAINT `RefINSUMOS141` FOREIGN KEY (`id_insumo`) REFERENCES `insumos` (`id_insumo`);
+
+--
+-- Filtros para la tabla `detalle_ventas`
+--
+ALTER TABLE `detalle_ventas`
+  ADD CONSTRAINT `RefPRODUCTOS71` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`);
+
+--
+-- Filtros para la tabla `empleados`
+--
+ALTER TABLE `empleados`
+  ADD CONSTRAINT `RefUSUARIO101` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `RefRECETA51` FOREIGN KEY (`id_receta`) REFERENCES `receta` (`id_receta`);
+
+--
+-- Filtros para la tabla `receta`
+--
+ALTER TABLE `receta`
+  ADD CONSTRAINT `RefINSUMOS11` FOREIGN KEY (`id_insumo`) REFERENCES `insumos` (`id_insumo`);
+
+--
+-- Filtros para la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD CONSTRAINT `RefCLIENTE91` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
+  ADD CONSTRAINT `RefCOMPROBANTE_DE_PAGO171` FOREIGN KEY (`id_comprobante`) REFERENCES `comprobante_de_pago` (`id_comprobante`),
+  ADD CONSTRAINT `RefDETALLE_VENTAS81` FOREIGN KEY (`id_detalle_venta`) REFERENCES `detalle_ventas` (`id_detalle_venta`),
+  ADD CONSTRAINT `RefEMPLEADOS111` FOREIGN KEY (`id_empleado`) REFERENCES `empleados` (`id_empleado`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -38,8 +38,8 @@ class AdminDAO{
             $rs= $mysqli->query($sql);
             if($fila= mysqli_fetch_assoc($rs)){
                 $objbea=new AdminBean();
-                $objbea->setCodigo($fila['codigo']);
-                $objbea->setCodPersona($fila['cod_persona']);
+                $objbea->setIdUsuario($fila['id_usuario']);
+                $objbea->setNombres($fila['nombres']);
                 $objbea->setUsuario($fila['usuario']);
                 $objbea->setClave($fila['clave']);
             }
@@ -53,11 +53,12 @@ class AdminDAO{
     public function GrabarAdmin(AdminBean $objbean){
         $i=0;
         try {
-            $id=$objbean->getCodigo();
+            $id=$objbean->getIdUsuario();
+            $nombres=$objbean->getNombres();
             $usuario=$objbean->getUsuario();
             $clave=$objbean->getClave();
-            $cod_cargo=$objbean->getCodCargo();
-            $sql="insert into usuario(usuario, clave,estado) values('$usuario','$clave','1')";
+            $rep_clave=$objbean->getRepClave();
+            $sql="insert into usuario(nombres,usuario,clave,rep_clave,estado) values('$nombres','$usuario','$clave','$rep_clave','1')";
             $cn = ConexionBD::getInstance();
             $mysqli = $cn->getConnection();
             $rs = $mysqli->query($sql);

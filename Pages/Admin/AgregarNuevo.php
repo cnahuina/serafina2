@@ -15,12 +15,9 @@
                     <form name="form">
                         <div class="form-group">
                             <label for="formGroupExampleInput">Nombres y apellidos</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingresar nombres">
+                            <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingresar nombres">
                         </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Email</label>
-                            <input type="email" class="form-control" id="formGroupExampleInput2" placeholder="Ingresar Email">
-                        </div>
+
                         <div class="form-group">
                             <label for="formGroupExampleInput2">Usuario</label>
                             <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresar Usuario">
@@ -31,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">Repetir Clave</label>
-                            <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Repetir clave">
+                            <input type="password" class="form-control" id="rep_clave" name="rep_clave"  placeholder="Repetir clave">
                         </div>
                         <input  class="btn-seguir-vendiendo" type="submit"  onclick="register_user('../Controller')" value="registrar">
                     </form>

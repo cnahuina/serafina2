@@ -1,7 +1,7 @@
 <?php
 
-include_once ('Bean/productoBean.php');
-include_once ('util/ConexionBD.php');
+include_once ('../Bean/productoBean.php');
+include_once ('../util/ConexionBD.php');
 
 class productoDAO
 {
@@ -11,18 +11,16 @@ class productoDAO
         $i = 0;
         try {
 
-            $idProducto = $objbean->getIdProducto();
-            $descripcion = $objbean->getDescripcion();
-            $idReceta = $objbean->getIdReceta();
-            $imagen = $objbean->getImagen();
-            $precio = $objbean->getPrecio();
-            $estado = $objbean->getEstado();
 
-            $sql = "insert into productos(idProducto, descripcion, idReceta, imagen, precio, estado) values ('$idProducto','$descripcion','$idReceta','$imagen','$precio','$estado')";
+            $descripcion = $objbean->getDescripcion();
+            $presentacion = $objbean->getPresentacion();
+            $foto = $objbean->getImagen();
+            $precio = $objbean->getPrecio();
+
+            $sql = "insert into productos(descripcion, presentacion, foto, estado,precio,id_receta) values ('$descripcion','$presentacion','$foto',1,'$precio',1)";
             $cn = ConexionBD::getInstance();
             $mysqli = $cn->getConnection();
-
-            $rs= $mysqli->query($sql);
+            $rs = $mysqli->query($sql);
             mysqli_close($cn);
         } catch (Exception $exc) {
             $rs = 0;

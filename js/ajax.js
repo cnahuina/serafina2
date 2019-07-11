@@ -40,11 +40,15 @@ function Acceso(ruta){
 }
 function register_user(ruta) {
     RutaTotal="../../Controlador/AdminControl.php?op=9";
-    var usuario, clave;
+    var nombres,usuario, clave,rep_clave;
+    nombres = document.form.nombres.value;
     usuario = document.form.usuario.value;
     clave =  document.form.clave.value;
-
-    if(usuario == ''){
+    rep_clave =  document.form.rep_clave.value;
+    if(nombres == ''){
+        document.form.nombres.focus();
+        return;
+    }else if(usuario == ''){
         //alertify.warning("Ingresar Nombre");
         document.form.usuario.focus();
         return;
@@ -52,10 +56,42 @@ function register_user(ruta) {
         //alertify.warning("Ingresar Contraseña");
         document.form.clave.focus();
         return;
+    }else if(rep_clave == ''){
+        //alertify.warning("Ingresar Contraseña");
+        document.form.repclave.focus();
+        return;
     }else{
         document.form.action=RutaTotal;
         document.form.method="POST";
         document.form.submit();
         //Record(route,'AdminControl',1,parameter);
+    }
+}
+
+function registrarProducto(ruta){
+    RutaTotal="../../Controlador/productoControlador.php?op=2";
+    var descripcion,presentacion,foto, precio;
+
+    descripcion = document.form.descripcion.value;
+    presentacion = document.form.presentacion.value;
+    foto = document.form.foto.value;
+    precio = document.form.precio.value;
+
+    if(descripcion==''){
+        document.form.descripcion.focus();
+        return;
+    }else if(presentacion==''){
+        document.form.presentacion.focus();
+        return;
+    }else if(foto==''){
+        document.form.foto.focus();
+        return;
+    }else if(precio==''){
+        document.form.precio.focus();
+        return;
+    }  else{
+        document.form.action=RutaTotal;
+        document.form.method="POST";
+        document.form.submit();
     }
 }

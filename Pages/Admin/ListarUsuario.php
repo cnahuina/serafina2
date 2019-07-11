@@ -1,4 +1,10 @@
+<?php
+session_start();
+$id = $_SESSION['id'];
+$list = $_SESSION['lista_u'];
 
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,7 +27,7 @@
     <nav class="navbar bg-red">
         <div class="items">
             <div class="title">
-                <a class="title" href="http://localhost/SerfinaProject/Pages/inicio.php">Serafina</a>
+                <a class="title" href="../../Pages/inicio.php">Serafina</a>
             </div>
             <div class="icons">
                 <div class="cart-circle"><a href="../cart.php"><i class="fas fa-shopping-cart"></i></a></div>
@@ -82,36 +88,36 @@
                 </div>
             </form>
         </div>
-
+        <?php include_once('AgregarNuevo.php')?>
         <div class="cuerpo">
                 <h2>Gestión de Trabajadores</h2>
                 <table class="table" >
                     <thead class="cabeza">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Mail</th>
-                        <th scope="col">Cargo</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Usuarios</th>
+                        <th scope="col">Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>cnahuina</td>
-                        <td>cnahuina@gmail.com</td>
-                        <td>Vendedor</td>
+                    <?php foreach ($list as $reg2) {?>
+                        <tr>
+                            <th scope="row"><?php echo  $reg2['id_usuario']; ?></th>
+                            <td><?php echo  $reg2['nombres']; ?></td>
+                            <td><?php echo  $reg2['usuario']; ?></td>
+                            <td>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>abermudez</td>
-                        <td>abermudez@gmail.com</td>
-                        <td>Administrador</td>
-                    </tr>
+                                    <a class="btn-seguir-vendiendo" style="color:#fff" data-toggle="modal" data-target="#formNuevo">Editar</a>
+                                    <a class="btn-seguir-vendiendo" style="color:#fff" >Eliminar</a>
+
+                            </td>
+                        </tr>
+                    <?php }?>
                     </tbody>
 
                 </table>
-            <?php include_once('AgregarNuevo.php')?>
+
             <div class="botones">
                 <a class="btn-seguir-vendiendo" style="color:#fff" data-toggle="modal" data-target="#formNuevo">Nuevo trabajador</a>
             </div>

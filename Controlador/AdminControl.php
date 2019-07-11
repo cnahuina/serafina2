@@ -21,13 +21,19 @@
                     if ($i == 1) {
                         $mensaje = "Bienvenido";
                         $objcapbean = $objdao->DatosAdmin($objbean);
-                        $id = $objcapbean->getCodigo();
+                        $id = $objcapbean->getIdUsuario();
                         $_SESSION['id'] = $id;
 
                         $objdao = new productoDAO();
                         $lista = $objdao->ListarProducto();
                         $_SESSION['lista'] = $lista;
                         $destino = "../Pages/inicio.php";
+
+
+                        $objdaoA = new AdminDAO();
+                        $listaA = $objdaoA->ListarAdmin();
+                        $_SESSION['lista_u'] = $listaA;
+
                     } else {
                         $mensaje = "Datos incorrectos, Vuelva ingresar";
                         $destino = "../index.php";
@@ -42,8 +48,8 @@
                 unset($_SESSION['mensaje']);
                 $objdao = new AdminDAO();
                 $lista = $objdao->ListarAdmin();
-                $_SESSION['lista'] = $lista;
-                $destino = "../Admin/ListarAdmin.php";
+                $_SESSION['lista_u'] = $lista;
+                $destino = "../Admin/ListarUsuario.php";
                 break;
             }
         case 3: {
@@ -53,18 +59,19 @@
             }
         case 4: {
                 unset($_SESSION['mensaje']);
-                $id = $_REQUEST["id"];
-                $nombre = $_REQUEST["nombre"];
+                $id = $_REQUEST["id_usuario"];
+                $nombre = $_REQUEST["nombres"];
                 $usuario = $_REQUEST["usuario"];
                 $clave = $_REQUEST["clave"];
+                $repclave = $_REQUEST["rep_clave"];
 
                 $objbean = new AdminBean();
                 $objDao = new AdminDAO();
-                $objbean->setCodigo($id);
-                $objbean->setCodPersona($nombre);
-                $objbean->setUsuario($usuario);
+                $objbean->setIdUsuario($id);
+                $objbean->setNombres($nombre);
+                $objbean->setIdUsuario($usuario);
                 $objbean->setClave($clave);
-
+                $objbean->setRepClave($repclave);
                 $i = $objDao->GrabarAdmin($objbean);
                 if ($i) {
                     $mensaje = "Registro insertado Satisfactoriamente";
@@ -83,7 +90,7 @@
                 $cod = $_REQUEST["cod"];
                 $objbeann = new AdminBean();
                 $objdaoo = new AdminDAO();
-                $objbeann->setCodigo($cod);
+                $objbeann->setIdUsuario($cod);
                 $i = $objdaoo->EliminarAdmin($objbeann);
                 if ($i == 1) {
                     $mensaje = "Registro Eliminado";
@@ -153,22 +160,37 @@
                 $objcapbean = $objdao->CapturarAdmin($objbeann);
                 $id = $objcapbean->getIdadmin();
                 $_SESSION['id'] = $id;
-                $destino = "../Seguridad/opciones.php";
+                $destino = "../Seguridad/opciones_.php";
 
                 break;
             }
         case 9: {
                 unset($_SESSION['mensaje']);
+                $nombres = $_REQUEST["nombres"];
                 $usuario = $_REQUEST["usuario"];
                 $clave = $_REQUEST["clave"];
+                $rep_clave = $_REQUEST["rep_clave"];
+
                 $objbean = new AdminBean();
                 $objdao = new AdminDAO();
 
+                $objbean->setNombres($nombres);
                 $objbean->setUsuario($usuario);
                 $objbean->setClave($clave);
+                $objbean->setRepClave($rep_clave);
                 $i = $objdao->GrabarAdmin($objbean);
                 //$_SESSION['id'] = $id;
-                $destino = "../Pages/inicio.php";
+
+                if($i==1){
+
+                    $objdaoA = new AdminDAO();
+                    $lista = $objdaoA->ListarAdmin();
+                    $_SESSION['lista_u'] = $lista;
+                    $destino = "../Pages/Admin/ListarUsuario.php";
+                }else{
+                    $mensaje = "Datos incorrectos, Vuelva ingresar";
+                    $destino = "../index.php";
+                }
 
                 break;
             }

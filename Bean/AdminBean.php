@@ -2,62 +2,110 @@
 
 class AdminBean
 {
-    public $codigo;
+    public $id_usuario;
+    public $nombres;
     public $usuario;
     public $clave;
-    public $codPersona;
-    public $codCargo;
+    public $rep_clave;
+    public $estado;
 
-
-    function getCodigo()
-    {
-        return $this->codigo;
-    }
-
-    function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
-    }
-
-     function getUsuario()
+    /**
+     * @return mixed
+     */
+    public function getUsuario()
     {
         return $this->usuario;
     }
 
-     function setUsuario($usuario)
+    /**
+     * @param mixed $usuario
+     */
+    public function setUsuario($usuario)
     {
         $this->usuario = $usuario;
     }
 
-     function getClave()
+
+    /**
+     * @return mixed
+     */
+    public function getIdUsuario()
+    {
+        return $this->id_usuario;
+    }
+
+    /**
+     * @param mixed $id_usuario
+     */
+    public function setIdUsuario($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombres()
+    {
+        return $this->nombres;
+    }
+
+    /**
+     * @param mixed $nombres
+     */
+    public function setNombres($nombres)
+    {
+        $this->nombres = $nombres;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClave()
     {
         return $this->clave;
     }
 
-     function setClave($clave)
+    /**
+     * @param mixed $clave
+     */
+    public function setClave($clave)
     {
         $this->clave = $clave;
     }
 
-     function getCodPersona()
+    /**
+     * @return mixed
+     */
+    public function getRepClave()
     {
-        return $this->codPersona;
+        return $this->rep_clave;
     }
 
-     function setCodPersona($codPersona)
+    /**
+     * @param mixed $rep_clave
+     */
+    public function setRepClave($rep_clave)
     {
-        $this->codPersona = $codPersona;
+        $this->rep_clave = $rep_clave;
     }
 
-     function getCodCargo()
+    /**
+     * @return mixed
+     */
+    public function getEstado()
     {
-        return $this->codCargo;
+        return $this->estado;
     }
 
-     function setCodCargo($codCargo)
+    /**
+     * @param mixed $estado
+     */
+    public function setEstado($estado)
     {
-        $this->codCargo = $codCargo;
+        $this->estado = $estado;
     }
+
 
 
 }

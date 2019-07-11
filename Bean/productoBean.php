@@ -5,10 +5,29 @@ class productoBean
 {
     public $idProducto;
     public $descripcion;
+    public $presentacion;
     public $idReceta;
     public $imagen;
     public $precio;
     public $estado;
+
+    /**
+     * @return mixed
+     */
+    public function getPresentacion()
+    {
+        return $this->presentacion;
+    }
+
+    /**
+     * @param mixed $presentacion
+     */
+    public function setPresentacion($presentacion)
+    {
+        $this->presentacion = $presentacion;
+    }
+
+
 
     /**
      * @return mixed
